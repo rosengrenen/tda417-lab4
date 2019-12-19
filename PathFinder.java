@@ -89,12 +89,7 @@ public class PathFinder<V> {
         int visitedNodes = 0;
         HashMap<V, DirectedEdge<V>> edgeTo = new HashMap<>();
         HashMap<V, Double> distTo = new HashMap<>();
-        PriorityQueue<V> queue = new PriorityQueue<V>(new Comparator<V>() {
-            @Override
-            public int compare(V left, V right) {
-                return Double.compare(distTo.get(left), distTo.get(right));
-            }
-        });
+        PriorityQueue<V> queue = new PriorityQueue<>(Comparator.comparingDouble(distTo::get));
         HashSet<V> visited = new HashSet<>();
         queue.add(start);
         distTo.put(start, 0.0);
@@ -104,7 +99,7 @@ public class PathFinder<V> {
             if (!visited.contains(current)) {
                 visited.add(current);
                 if (current.equals(goal)) {
-                    ArrayList<V> path = new ArrayList<V>();
+                    ArrayList<V> path = new ArrayList<>();
                     DirectedEdge<V> currentEdge = edgeTo.get(goal);
                     while (currentEdge != null) {
                         path.add(currentEdge.to());
@@ -126,14 +121,47 @@ public class PathFinder<V> {
             }
         }
         return new Result<>(false, start, null, -1, null, visitedNodes);
-
     }
 
     public Result<V> searchAstar(V start, V goal) {
         int visitedNodes = 0;
-        /********************
-         * TODO: Task 3
-         ********************/
+        HashMap<V, DirectedEdge<V>> edgeTo = new HashMap<>();
+        HashMap<V, Double> distTo = new HashMap<>();
+        PriorityQueue<V> queue = new PriorityQueue<>((left, right) -> {
+            double leftDist = distTo.get(left) + graph.guessCost(left, goal);
+            double rightDist = distTo.get(right) + graph.guessCost(right, goal);
+            return Double.compare(leftDist, rightDist);
+        });
+        HashSet<V> visited = new HashSet<>();
+        queue.add(start);
+        distTo.put(start, 0.0);
+        while (!queue.isEmpty()) {
+            V current = queue.remove();
+            if (!visited.contains(current)) {
+                visitedNodes++;
+                visited.add(current);
+                if (current.equals(goal)) {
+                    ArrayList<V> path = new ArrayList<>();
+                    DirectedEdge<V> currentEdge = edgeTo.get(goal);
+                    while (currentEdge != null) {
+                        path.add(currentEdge.to());
+                        currentEdge = edgeTo.get(currentEdge.from());
+                    }
+                    path.add(start);
+                    Collections.reverse(path);
+                    return new Result<>(true, start, goal, distTo.get(goal), path, visitedNodes);
+                }
+                for (DirectedEdge<V> edge : graph.outgoingEdges(current)) {
+                    V to = edge.to();
+                    double newDist = distTo.get(current) + edge.weight();
+                    if (distTo.get(to) == null || distTo.get(to) > newDist) {
+                        distTo.put(to, newDist);
+                        edgeTo.put(to, edge);
+                        queue.add(to);
+                    }
+                }
+            }
+        }
         return new Result<>(false, start, null, -1, null, visitedNodes);
     }
 

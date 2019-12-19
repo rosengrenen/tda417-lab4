@@ -3,9 +3,7 @@ import java.util.List;
 
 
 public interface DirectedGraph<V> {
+    List<DirectedEdge<V>> outgoingEdges(V v);
 
-    public List<DirectedEdge<V>> outgoingEdges(V v);
-
-    public double guessCost(V v, V w);
-
+    double guessCost(V v, V w);
 }

@@ -1,23 +1,16 @@
 
-import java.util.List;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.PriorityQueue;
-import java.util.Random;
+import java.util.*;
 
 import java.util.stream.Collectors;
-
 
 public class PathFinder<V> {
 
     private DirectedGraph<V> graph;
     private long startTimeMillis;
 
-
     public PathFinder(DirectedGraph<V> graph) {
         this.graph = graph;
     }
-
 
     public class Result<V> {
         public final boolean success;
@@ -52,17 +45,18 @@ public class PathFinder<V> {
         }
     }
 
-
     public Result<V> search(String algorithm, V start, V goal) {
         startTimeMillis = System.currentTimeMillis();
         switch (algorithm) {
-        case "random":   return searchRandom(start, goal);
-        case "dijkstra": return searchDijkstra(start, goal);
-        case "astar":    return searchAstar(start, goal);
+            case "random":
+                return searchRandom(start, goal);
+            case "dijkstra":
+                return searchDijkstra(start, goal);
+            case "astar":
+                return searchAstar(start, goal);
         }
         throw new IllegalArgumentException("Unknown search algorithm: " + algorithm);
     }
-
 
     public Result<V> searchRandom(V start, V goal) {
         int visitedNodes = 0;
@@ -91,15 +85,49 @@ public class PathFinder<V> {
         return new Result<>(false, start, null, -1, null, visitedNodes);
     }
 
-
     public Result<V> searchDijkstra(V start, V goal) {
         int visitedNodes = 0;
-        /********************
-         * TODO: Task 1 
-         ********************/
+        HashMap<V, DirectedEdge<V>> edgeTo = new HashMap<>();
+        HashMap<V, Double> distTo = new HashMap<>();
+        PriorityQueue<V> queue = new PriorityQueue<V>(new Comparator<V>() {
+            @Override
+            public int compare(V left, V right) {
+                return Double.compare(distTo.get(left), distTo.get(right));
+            }
+        });
+        HashSet<V> visited = new HashSet<>();
+        queue.add(start);
+        distTo.put(start, 0.0);
+        while (!queue.isEmpty()) {
+            V current = queue.remove();
+            visitedNodes++;
+            if (!visited.contains(current)) {
+                visited.add(current);
+                if (current.equals(goal)) {
+                    ArrayList<V> path = new ArrayList<V>();
+                    DirectedEdge<V> currentEdge = edgeTo.get(goal);
+                    while (currentEdge != null) {
+                        path.add(currentEdge.to());
+                        currentEdge = edgeTo.get(currentEdge.from());
+                    }
+                    path.add(start);
+                    Collections.reverse(path);
+                    return new Result<>(true, start, goal, distTo.get(goal), path, visitedNodes);
+                }
+                for (DirectedEdge<V> edge : graph.outgoingEdges(current)) {
+                    V to = edge.to();
+                    double newDist = distTo.get(current) + edge.weight();
+                    if (distTo.get(to) == null || distTo.get(to) > newDist) {
+                        distTo.put(to, newDist);
+                        edgeTo.put(to, edge);
+                        queue.add(to);
+                    }
+                }
+            }
+        }
         return new Result<>(false, start, null, -1, null, visitedNodes);
+
     }
-    
 
     public Result<V> searchAstar(V start, V goal) {
         int visitedNodes = 0;

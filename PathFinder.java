@@ -95,8 +95,8 @@ public class PathFinder<V> {
         distTo.put(start, 0.0);
         while (!queue.isEmpty()) {
             V current = queue.remove();
-            visitedNodes++;
             if (!visited.contains(current)) {
+                visitedNodes++;
                 visited.add(current);
                 if (current.equals(goal)) {
                     ArrayList<V> path = new ArrayList<>();

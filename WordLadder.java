@@ -80,10 +80,14 @@ public class WordLadder implements DirectedGraph<String> {
 
 
     public double guessCost(String v, String w) {
-        /********************
-         * TODO: Task 4
-         ********************/
-        return 0;
+        assert v.length() == w.length();
+        int count = 0;
+        for (int i = 0; i < v.length(); ++i) {
+            if (v.charAt(i) != w.charAt(i)) {
+                count++;
+            }
+        }
+        return count;
     }
 
 

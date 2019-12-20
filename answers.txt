@@ -1,15 +1,11 @@
 
-DocViewer
-Page
-of 4
-Pages
 /*************************************************************************
 *****
 *  DAT038, TDA417  Datastrukturer och algoritmer, LP2 2019
 *  Lab 4: Path finder
 *************************************************************************
 *****/
-Name of lab group: [...]
+Name of lab group: [95]
 Group member A:    Rasmus Rosengren
 Group member B:    Dino pasalic
 /*************************************************************************
@@ -17,8 +13,8 @@ Group member B:    Dino pasalic
 *  How many hours did you spend on the assignment?
 *************************************************************************
 ****/
-Group member A:    [...]
-Group member B:    [...]
+Group member A:    [5 hours]
+Group member B:    [5 hours]
 /*************************************************************************
 *****
 *  List the minimal cost, shortest path, and nr of visited nodes,
@@ -85,41 +81,102 @@ shortest path: [syster -> sylter -> salter -> balter -> balder -> barder -> bard
 *****
 *  For which of the three classes GridGraph, WordLadder and NPuzzle,
 *  did the heuristics .guessCost() have the most impact?
-*
+* 
 *  Why do you think this is the case?
 *************************************************************************
 ****/
-[...]
+
+[ .guessCost heuristics had the most impact on NPuzzle, this is probably because]
+
 /*************************************************************************
 *****
 *  Show pseudo-code of the following methods that you implemented
 *************************************************************************
 ****/
+
 // WordLadder.outgoingEdges(String word)
-[...]
+
+[ ---*
+	//create a list of edges and words
+	//for i = 0; i < word.lenght; i++
+		//for every character c in charset)
+			//if c equals word.charAt(i)
+				//continue
+			//make a new word swapping out the charAt(i) with c
+			// if the new word is in dictionary
+				//add the edge to the list
+	//return edges
+	*---
+]
+
 // WordLadder.guessCost(String v, String w)
-[...]
+
+[---*
+	//if v and w have the same lenght
+		// initialize count
+		// for (every char in v)
+			//if (v.charAt(i) is not equal too w.chatAt(i))
+				// increment count
+	// return count
+	*---
+]
+
 // GridGraph.guessCost(Coord start, Coord end)
-[...]
+
+[
+	---//return Euclidan distance between start and end
+]
+
 /*************************************************************************
 *****
 *  Show pseudo-code of method .searchDijkstra() in PathFinder
 *************************************************************************
 ****/
+
 // PathFinder.searchDijkstra(V start, V goal)
-[...]
+[---*
+edgeTo = new empty hash map from nodes to edges
+distTo = new empty hash map from nodes to double
+queue = new priority queue, with nodes as elements, 
+            and a comparator that compares distTo values
+visited = new empty set of nodes
+add start to queue
+distTo[start] = 0.0
+while queue is not empty:
+    v = delete minimal element from queue
+    if v not in visited:
+        add v to visited
+        if v is the goal:
+            SUCCESS: calculate the path and return it
+        for every outgoing edge e from v:
+            w = e.to()
+            newdist = distTo[v] + e.weight()
+            if distTo[w] > newdist:
+                distTo[w] = newdist
+                edgeTo[w] = e
+                add w to queue
+return FAILURE *---
+]
+
 /*************************************************************************
 *****
 *  What are the main differences between your implementations
 *  of .searchAstar() and .searchDijkstra()?
 *************************************************************************
 ****/
-[...]
+
+[
+	---The main difference is the change in how the priority queue sorts the nodes
+]
+
 /*************************************************************************
 *****
 *  Are there any known bugs / limitations?
 *************************************************************************
 ****/
+
+		---Not as far as we know (ändra till no om det är rätt)
+
 /*************************************************************************
 *****
 *  Did you collaborate with any other students on this lab?
@@ -128,11 +185,17 @@ shortest path: [syster -> sylter -> salter -> balter -> balder -> barder -> bard
 *  may have used in creating your design.
 *************************************************************************
 ****/
+
+	---We did discuss a little with group 128 how our methos differs and what the difference meant
+
 /*************************************************************************
 *****
 *  Describe any serious problems you encountered.
 *************************************************************************
 ****/
+
+	
+
 /*************************************************************************
 *****
 *  List any other comments here. Feel free to provide any feedback

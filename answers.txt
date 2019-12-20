@@ -95,37 +95,26 @@ shortest path: [syster -> sylter -> salter -> balter -> balder -> barder -> bard
 ****/
 
 // WordLadder.outgoingEdges(String word)
-
-[ ---*
-	//create a list of edges and words
-	//for i = 0; i < word.lenght; i++
-		//for every character c in charset)
-			//if c equals word.charAt(i)
-				//continue
-			//make a new word swapping out the charAt(i) with c
-			// if the new word is in dictionary
-				//add the edge to the list
-	//return edges
-	*---
-]
+outgoing edges list = []
+for c in word:
+	for character in charset:
+		if c equals character: continue
+		newword = word with c changed to character
+		if newword is in dictionary
+			add newword to outgoing edges list
+return outgoing edges list
 
 // WordLadder.guessCost(String v, String w)
 
-[---*
-	//if v and w have the same lenght
-		// initialize count
-		// for (every char in v)
-			//if (v.charAt(i) is not equal too w.chatAt(i))
-				// increment count
-	// return count
-	*---
-]
+count = 0
+for index in v
+	if v[index] not equal to w[index]
+		increment count by one
+return count
 
 // GridGraph.guessCost(Coord start, Coord end)
 
-[
-	---//return Euclidan distance between start and end
-]
+return Euclidan distance between start and end // sqrt((start.x - end.x)^2 + (start.y - end.y)^2)
 
 /*************************************************************************
 *****
@@ -134,7 +123,7 @@ shortest path: [syster -> sylter -> salter -> balter -> balder -> barder -> bard
 ****/
 
 // PathFinder.searchDijkstra(V start, V goal)
-[---*
+
 edgeTo = new empty hash map from nodes to edges
 distTo = new empty hash map from nodes to double
 queue = new priority queue, with nodes as elements, 
@@ -147,16 +136,16 @@ while queue is not empty:
     if v not in visited:
         add v to visited
         if v is the goal:
-            SUCCESS: calculate the path and return it
+            backtrack path
+						return success with information
         for every outgoing edge e from v:
             w = e.to()
             newdist = distTo[v] + e.weight()
-            if distTo[w] > newdist:
+            if distTo[w] is null or distTo[w] > newdist:
                 distTo[w] = newdist
                 edgeTo[w] = e
                 add w to queue
-return FAILURE *---
-]
+return failure
 
 /*************************************************************************
 *****
@@ -165,9 +154,7 @@ return FAILURE *---
 *************************************************************************
 ****/
 
-[
-	---The main difference is the change in how the priority queue sorts the nodes
-]
+The only difference is that the priority queue comparator that sorts the items, it now takes guessCost() into account
 
 /*************************************************************************
 *****
@@ -175,7 +162,7 @@ return FAILURE *---
 *************************************************************************
 ****/
 
-		---Not as far as we know (ändra till no om det är rätt)
+None that we know of
 
 /*************************************************************************
 *****
@@ -186,7 +173,7 @@ return FAILURE *---
 *************************************************************************
 ****/
 
-	---We did discuss a little with group 128 how our methos differs and what the difference meant
+We did discuss a little with group 128 how our methods differ and what the differences meant
 
 /*************************************************************************
 *****
@@ -194,7 +181,7 @@ return FAILURE *---
 *************************************************************************
 ****/
 
-	
+None, it was very straight forward
 
 /*************************************************************************
 *****

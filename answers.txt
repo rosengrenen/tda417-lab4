@@ -27,50 +27,60 @@ Group member B:    [...]
 ****/
 $ java RunPathFinder dijkstra AdjacencyGraph 
 graphs/AdjacencyGraph/citygraph-EU.txt "Volos, Greece" "Oulu, Finland"
-visited nodes: [...]
-minimal cost:  [...]
-shortest path: [...]
+visited nodes: [961]
+minimal cost:  [3488.0]
+shortest path: [Volos, Greece -> Timişoara, Romania -> Arad, Romania -> Oradea, Romania -> Debrecen, Hungary -> Nyíregyháza, Hungary -> Uzhgorod, Ukraine -> Rzeszów, Poland -> Lublin, Poland -> Białystok, Poland -> Tallinn, Estonia -> Helsinki, Finland -> Oulu, Finland]
+
 $ java RunPathFinder astar AdjacencyGraph graphs/AdjacencyGraph/citygraph-
 EU.txt "Volos, Greece" "Oulu, Finland"
-visited nodes: [...]
-minimal cost:  [...]
-shortest path: [...]
+visited nodes: [961]
+minimal cost:  [3488.0]
+shortest path: [Volos, Greece -> Timişoara, Romania -> Arad, Romania -> Oradea, Romania -> Debrecen, Hungary -> Nyíregyháza, Hungary -> Uzhgorod, Ukraine -> Rzeszów, Poland -> Lublin, Poland -> Białystok, Poland -> Tallinn, Estonia -> Helsinki, Finland -> Oulu, Finland]
+
 $ java RunPathFinder dijkstra NPuzzle 3 "/HFG/BED/C_A/" "/ABC/DEF/GH_/"
-visited nodes: [...]
-minimal cost:  [...]
-shortest path: [...]
+visited nodes: [181440]
+minimal cost:  [31.0]
+shortest path: [/HFG/BED/C_A/ -> /HFG/BED/CA_/ -> /HFG/BE_/CAD/ -> /HF_/BEG/CAD/ -> /H_F/BEG/CAD/ -> /_HF/BEG/CAD/ -> /BHF/_EG/CAD/ -> /BHF/CEG/_AD/ -> /BHF/CEG/A_D/ -> /BHF/CEG/AD_/ -> /BHF/CE_/ADG/ -> /BHF/C_E/ADG/ -> /BHF/_CE/ADG/ -> /BHF/ACE/_DG/ -> /BHF/ACE/D_G/ -> /BHF/ACE/DG_/ -> /BHF/AC_/DGE/ -> /BHF/A_C/DGE/ -> /B_F/AHC/DGE/ -> /BF_/AHC/DGE/ -> /BFC/AH_/DGE/ -> /BFC/A_H/DGE/ -> /B_C/AFH/DGE/ -> /_BC/AFH/DGE/ -> /ABC/_FH/DGE/ -> /ABC/DFH/_GE/ -> /ABC/DFH/G_E/ -> /ABC/DFH/GE_/ -> /ABC/DF_/GEH/ -> /ABC/D_F/GEH/ -> /ABC/DEF/G_H/ -> /ABC/DEF/GH_/]
+
 $ java RunPathFinder astar NPuzzle 3 "/HFG/BED/C_A/" "/ABC/DEF/GH_/"
-visited nodes: [...]
-minimal cost:  [...]
-shortest path: [...]
+visited nodes: [15860]
+minimal cost:  [31.0]
+shortest path: [/HFG/BED/C_A/ -> /HFG/BED/_CA/ -> /HFG/_ED/BCA/ -> /HFG/E_D/BCA/ -> /H_G/EFD/BCA/ -> /HG_/EFD/BCA/ -> /HGD/EF_/BCA/ -> /HGD/EFA/BC_/ -> /HGD/EFA/B_C/ -> /HGD/E_A/BFC/ -> /H_D/EGA/BFC/ -> /HD_/EGA/BFC/ -> /HDA/EG_/BFC/ -> /HDA/EGC/BF_/ -> /HDA/EGC/B_F/ -> /HDA/E_C/BGF/ -> /HDA/_EC/BGF/ -> /_DA/HEC/BGF/ -> /D_A/HEC/BGF/ -> /DA_/HEC/BGF/ -> /DAC/HE_/BGF/ -> /DAC/H_E/BGF/ -> /DAC/_HE/BGF/ -> /DAC/BHE/_GF/ -> /DAC/BHE/G_F/ -> /DAC/B_E/GHF/ -> /DAC/_BE/GHF/ -> /_AC/DBE/GHF/ -> /A_C/DBE/GHF/ -> /ABC/D_E/GHF/ -> /ABC/DE_/GHF/ -> /ABC/DEF/GH_/]
+
 $ java RunPathFinder dijkstra NPuzzle 3 "/HGF/BED/C_A/" "/ABC/DEF/GH_/"
-visited nodes: [...]
-minimal cost:  [...]
-shortest path: [...]
+visited nodes: [181440]
+minimal cost:  [null]
+shortest path: [No path found from /HGF/BED/C_A/]
+
 $ java RunPathFinder astar NPuzzle 3 "/HGF/BED/C_A/" "/ABC/DEF/GH_/"
-visited nodes: [...]
-minimal cost:  [...]
-shortest path: [...]
+visited nodes: [181440]
+minimal cost:  [null]
+shortest path: [No path found from /HGF/BED/C_A/]
+
 $ java RunPathFinder dijkstra GridGraph graphs/GridGraph/AR0011SR.map 
 "23:161" "130:211"
 visited nodes: [...]
 minimal cost:  [...]
 shortest path: [...]
+
 $ java RunPathFinder astar GridGraph graphs/GridGraph/AR0011SR.map 
 "23:161" "130:211"
 visited nodes: [...]
 minimal cost:  [...]
 shortest path: [...]
+
 $ java RunPathFinder dijkstra WordLadder graphs/WordLadder/words-saldo.txt 
 syster broder
 visited nodes: [...]
 minimal cost:  [...]
 shortest path: [...]
+
 $ java RunPathFinder astar WordLadder graphs/WordLadder/words-saldo.txt 
 syster broder
 visited nodes: [...]
 minimal cost:  [...]
 shortest path: [...]
+
 /*************************************************************************
 *****
 *  For which of the three classes GridGraph, WordLadder and NPuzzle,

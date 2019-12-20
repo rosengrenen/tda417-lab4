@@ -86,7 +86,10 @@ shortest path: [syster -> sylter -> salter -> balter -> balder -> barder -> bard
 *************************************************************************
 ****/
 
-[ .guessCost heuristics had the most impact on NPuzzle, this is probably because]
+.guessCost() heuristics had the most impact on NPuzzle, which we think is because
+without a notion of direction it is very hard for the algorithm to find the
+shortest path in an efficient manner of an NPuzzle, because the nth permutation of 
+an NPuzzle is n distance from the start.
 
 /*************************************************************************
 *****
